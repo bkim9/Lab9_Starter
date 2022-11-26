@@ -110,9 +110,43 @@
     // console count
     errorBtns[2].addEventListener('click', ()=> {
       console.count();
-    })
+    });
     // console warn
-    errorBtns
+    errorBtns[3].addEventListener('click', () => {
+      console.warn('warning message');
+    });
+    // console assert
+    errorBtns[4].addEventListener('click', ()=> {
+      const x = 1;
+      const errorMsg = 'x + x == 2 != 1';
+      console.assert(x+x==1,{x,errorMsg});
+    });
+    // console clear
+    errorBtns[5].addEventListener('click', ()=> {
+      console.clear();
+    });
+    // console dir
+    errorBtns[6].addEventListener('click', ()=> {
+      console.dir(document.head);
+    });
+    // console dirxml
+    errorBtns[7].addEventListener('click', ()=> {
+      console.dirxml(document);
+    });
+    const recipe1 = 'Croissant';
+    // console groupStart
+    errorBtns[8].addEventListener('click', ()=> {
+      console.group(recipe1);
+      console.info('All purpose flour');
+      console.info('Sugar');
+      console.info('Butter');
+      console.info('Yeast');
+    });
+    // console groupEnd
+    errorBtns[9].addEventListener('click', ()=> {
+      console.groupEnd(recipe1);  
+    });
+    
     // console table
     errorBtns[10].addEventListener('click', () => {
       let people = [
@@ -132,7 +166,28 @@
       ];
       console.table(people);
     });
-    // Start your code here
+
+    // Strat Timer
+    errorBtns[11].addEventListener('click', ()=> {
+      console.time();
+    });
+    // End Timer
+    errorBtns[12].addEventListener('click', ()=> {
+      console.timeEnd();
+    });
+    // Console Trace
+    errorBtns[13].addEventListener('click', ()=> {
+      const deep = () => { deeper(); };
+      const deeper = () => { moreDeeper(); };
+      const moreDeeper = () => { deepest(); };
+      const deepest = () => { console.trace(); };
+      deep();
+    });
+    // Trigger a global error
+    errorBtns[14].addEventListener('click', ()=> {
+      conosole.log('Sadly an error happened, my friend');
+      disorientation;
+    });
     // You may move this JS to another file if you wish
   </script>
 </body>
