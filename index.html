@@ -99,7 +99,39 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
+    // console log
+    errorBtns[0].addEventListener('click', () => {
+      console.log('clicked');
+    });
+    // console error
+    errorBtns[1].addEventListener('click', () => {
+      console.error('error clicked');
+    });
+    // console count
+    errorBtns[2].addEventListener('click', ()=> {
+      console.count();
+    })
+    // console warn
+    errorBtns
+    // console table
+    errorBtns[10].addEventListener('click', () => {
+      let people = [
+        {
+          first: 'René',
+          last: 'Magritte',
+        },
+        {
+          first: 'Chaim',
+          last: 'Soutine',
+          birthday: '18930113',
+        },
+        {
+          first: 'Henri',
+          last: 'Matisse',
+        }
+      ];
+      console.table(people);
+    });
     // Start your code here
     // You may move this JS to another file if you wish
   </script>
