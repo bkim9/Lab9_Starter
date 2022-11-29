@@ -57,6 +57,17 @@ function readUser(json) {
     }
 }
 
+try {
+    readUser('{bad json}');
+} catch (e) {
+    if (e instanceof ReadError) {
+        alert(e);
+        // Original error: SyntaxError: Unexpected token b in JSON at position 1
+        alert("Original error: " + e.cause);
+    } else {
+        throw e;
+    }
+}
 // Working example with try..catch
 
 try {
