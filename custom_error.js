@@ -1,15 +1,75 @@
-class Error {
-    constructor(message) {
-        this.message = message;
-        this.name = "Error"; // (different names for different built-in error classes)
-        this.stack = 'stack' //<call stack>; //non standard, but environments support it
+class ReadError extends Error{
+    constructor(message, cause) {
+        super(message);
+        this.cause = cause;
+        this.name = this.constructor.name;
     }
 }
 
-class ValidationError extends Error {
-    constructor(message) {
-        super(message); // {1}
-        this.name = "ValidationError"; // {2}
+class ValidationError extends MyError { }
+
+class PropertyRequiredError extends ValidationError {
+    constructor(property) {
+        super("No property: " + property);
+        this.property = property;
+    }
+}
+
+function readUser(json) {
+    let user = JSON.parse(json);
+
+    if(!user.age) {
+        throw new PropertyRequiredError("age");
+    }
+
+    return user;
+}
+
+function validateUser(user) {
+    if(!user.age) {
+        throw new PropertyRequiredError("age");
+    }
+
+    if(!user.name) {
+        throw new PropertyRequiredError("name");
+    }
+}
+
+function readUser(json) {
+    let user;
+
+    try {
+        user = JSON.parse(json);
+    } catch (err) {
+        if (err instanceof SyntaxError) {
+            throw new ReadError("Syntax Error", err);
+        } else {
+            throw err;
+        }
+    }
+
+    try {
+        validateUser(user);
+    } catch (err) {
+        if (err instanceof ValidationError) {
+            throw new ReadError("Validation Error", err);
+        }
+    }
+}
+
+// Working example with try..catch
+
+try {
+    let user = readUser('{ "age": 25 }');
+} catch (err) {
+    if (err instanceof ValidationError) {
+        alert("Invalid data: " + err.message);
+        alert(err.name);
+        alert(err.property);
+    } else if (err instanceof SyntaxError) {
+        alert("JSON Syntax Error: " + err.message);
+    } else {
+        throw err; // unknown error, rethrow it
     }
 }
 

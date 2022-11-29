@@ -184,6 +184,14 @@
       const deepest = () => { console.trace(); };
       deep();
     });
+
+    class ValidationError extends Error {
+      constructor(message){
+        super(message);
+        this.name = "ValidationError";
+      }
+    }
+
     // Trigger a global error
     errorBtns[14].addEventListener('click', ()=> {
       // let jsonString = `{"name: "John", "age": 30}`;
