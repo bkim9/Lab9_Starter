@@ -6,7 +6,7 @@ class ReadError extends Error{
     }
 }
 
-class ValidationError extends MyError { }
+class ValidationError extends Error { }
 
 class PropertyRequiredError extends ValidationError {
     constructor(property) {
@@ -15,15 +15,6 @@ class PropertyRequiredError extends ValidationError {
     }
 }
 
-function readUser(json) {
-    let user = JSON.parse(json);
-
-    if(!user.age) {
-        throw new PropertyRequiredError("age");
-    }
-
-    return user;
-}
 
 function validateUser(user) {
     if(!user.age) {

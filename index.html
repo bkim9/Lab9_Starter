@@ -7,6 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="./custom_error.js" type="module"></script>
   <title>Lab 9</title>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "817983efd1a9420991df2548235671fb"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
 
   <style>
     button {
@@ -197,10 +205,17 @@
       // let jsonString = `{"name: "John", "age": 30}`;
       // let normalJsonString = `{"job": "Crew"}`;
       // let customError = new Error("Things happen o_0");
+
+      window.onerror = function(message, url, line, col, error) {
+        alert(`window onerror${message}\n At ${line}:${col} of ${url}`);
+    }
+
+
+
       let num = +prompt("Enter a positive integer number?", 35)
       let diff, result;
       let start = Date.now();
-
+      did
       try {
         // result = 
         // let jsonObj = JSON.parse(normalJsonString);
@@ -226,12 +241,14 @@
       } finally {
         diff = Date.now() - start;
       }
-
       alert( result || "error occurred");
-
-      alert( `execution took ${diff}ms`)
+      alert( `finally, execution took ${diff}ms`);
+      
     });
-    // You may move this JS to another file if you wish
+    
+
+
+    
   </script>
 </body>
 
