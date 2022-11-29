@@ -208,6 +208,7 @@
 
       window.onerror = function(message, url, line, col, error) {
         alert(`window onerror${message}\n At ${line}:${col} of ${url}`);
+        console.log('sorry it\'s not working globally');
     }
 
 
@@ -232,7 +233,12 @@
         result = 0;
         if (error instanceof ReferenceError) {
           alert('ReferenceError'); // "ReferenceError" for accessing an undefined variable
+        }else if (error instanceof SyntaxError) {
+          alert('SyntaxError');
+        } else {
+          throw newError
         }
+
         console.log('sorry it\'s not working')
         // alert(error.name);
         // alert(error.message); 
