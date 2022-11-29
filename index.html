@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./custom_error.js" type="module"></script>
   <title>Lab 9</title>
 
   <style>
@@ -185,8 +186,42 @@
     });
     // Trigger a global error
     errorBtns[14].addEventListener('click', ()=> {
-      conosole.log('Sadly an error happened, my friend');
-      disorientation;
+      // let jsonString = `{"name: "John", "age": 30}`;
+      // let normalJsonString = `{"job": "Crew"}`;
+      // let customError = new Error("Things happen o_0");
+      let num = +prompt("Enter a positive integer number?", 35)
+      let diff, result;
+      let start = Date.now();
+
+      try {
+        // result = 
+        // let jsonObj = JSON.parse(normalJsonString);
+        // if (!jsonObj.name) {
+        //   throw new SyntaxError("Incomplete data: no name"); //
+        // }
+        // alert(jsonObj.jov);
+        eeeee;
+
+        // rethrowing
+        // user = { /*...*/ };
+        result = 1 + 1;
+      } catch (error) {
+        result = 0;
+        if (error instanceof ReferenceError) {
+          alert('ReferenceError'); // "ReferenceError" for accessing an undefined variable
+        }
+        console.log('sorry it\'s not working')
+        // alert(error.name);
+        // alert(error.message); 
+        // alert(error.stack);
+        // alert(error);
+      } finally {
+        diff = Date.now() - start;
+      }
+
+      alert( result || "error occurred");
+
+      alert( `execution took ${diff}ms`)
     });
     // You may move this JS to another file if you wish
   </script>
